@@ -1,6 +1,8 @@
 class Api::ProductsController < ApplicationController
   def first
     @product = Product.last
+    the_id = params[:id]
+    @product = Product.find_by(id: the_id)
     render "first.json.jb"
   end
 
