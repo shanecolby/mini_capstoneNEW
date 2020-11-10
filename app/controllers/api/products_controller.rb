@@ -1,4 +1,10 @@
 class Api::ProductsController < ApplicationController
+  
+  def index
+    @products = Product.all
+    render "index.json.jb"
+  end
+  
   def show
     @product = Product.last
     the_id = params[:id]
@@ -6,13 +12,11 @@ class Api::ProductsController < ApplicationController
     render "show.json.jb"
   end
 
-  def index
-    @products = Product.all
-    render "index.json.jb"
-  end
-
   def create
-    render "create.json.jb"
+    @product = Product.new(name: params[:input_name], price: params[:input_price], img_url: params[:input_img_url], description: params[:input_description])
+    @product.save
+
+    render "show.json.jb"
   end
 
 end
