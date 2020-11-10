@@ -13,13 +13,26 @@ class Api::ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(name: params[:input_name], price: params[:input_price], img_url: params[:input_img_url], description: params[:input_description])
+    @product = Product.new(
+      name: params[:input_name], 
+      price: params[:input_price], 
+      img_url: params[:input_img_url], 
+      description: params[:input_description])
     @product.save
     render "show.json.jb"
   end
 
   def update
-    render "update.json.jb"
+    @product = Product.find_by(id: params[:id])
+
+    @product.name = params[:update_name]
+    @product.price = params[:update_price]
+    @product.img_url = params[:update_img_url]
+    @product.description = params[:update_description]
+    @product.save
+    
+
+    render "show.json.jb"
   end
 
-end
+end    
