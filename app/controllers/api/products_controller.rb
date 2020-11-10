@@ -18,7 +18,8 @@ class Api::ProductsController < ApplicationController
       price: params[:input_price], 
       img_url: params[:input_img_url], 
       description: params[:input_description])
-    @product.save
+      @product.save
+   
     render "show.json.jb"
   end
 
@@ -31,8 +32,13 @@ class Api::ProductsController < ApplicationController
     @product.description = params[:update_description]
     @product.save
     
-
     render "show.json.jb"
   end
 
-end    
+  def destroy
+    @product = Product.find_by(id: params[:id])
+    @product.destroy
+    render json: {message: "product destroyed"}
+  end
+
+end
