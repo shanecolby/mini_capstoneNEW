@@ -10,4 +10,9 @@ class Api::ProductsController < ApplicationController
     @products = Product.all
     render "index.json.jb"
   end
+
+  def create
+    render "create.json.jb"
+  end
+
 end
