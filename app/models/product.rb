@@ -1,7 +1,6 @@
 class Product < ApplicationRecord
   def tax
     tax = price * (0.09)
-    # total = price + tax
   end
 
   def is_discounted?
