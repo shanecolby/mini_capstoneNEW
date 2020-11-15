@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   validates :name, presence: true
-  validates :price, numericality: { only_integer: true }
+  validates :price, numericality: { only_integer: true, greater_than: 1 }
 
   def tax
     tax = price * (0.09)
