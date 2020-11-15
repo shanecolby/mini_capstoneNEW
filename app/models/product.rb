@@ -1,9 +1,10 @@
 class Product < ApplicationRecord
-  validates :name, presence: true
+  validates :name, :price, :description, presence: true
   validates :price, numericality: { only_integer: true, greater_than: 1 }
+  validates :description, length: { in: 10..500 }
 
   def tax
-    tax = price * (0.09)
+    price * (0.09)
   end
 
   def is_discounted?
