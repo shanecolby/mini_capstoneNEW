@@ -12,10 +12,12 @@ product.save
 
 product = Product.new(name: "desk lamp", price: 15.00, img_url: "desk.accessory.lamp", description: "10 inch desk lamp")
 product.save
-Product.create!([
 
-#CREATED WITH rails db:seed:dump APPEND=true
 
+#CREATED WITH rails db:seed:dump APPEND=true (recovers data if deleted)
+
+
+# Product.create!([
   # {name: "Keyboard", price: "75.0", img_url: "keyboard.computer.tkl.amazon", description: "Mechanical Keyboard wired", inventory: nil},
   # {name: "Computer mouse", price: "60.0", img_url: "computer.mouse", description: "wired computer mouse", inventory: nil},
   # {name: "Computer chair", price: "150.0", img_url: "desk.chair.computer.leather", description: "Adjustable computer chair with lumbar support", inventory: nil},
