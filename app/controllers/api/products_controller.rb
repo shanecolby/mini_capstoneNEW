@@ -1,7 +1,20 @@
 class Api::ProductsController < ApplicationController
   
   def index
-    @products = Product.all
+    # @products = Product.all
+    search_term = params[:name]
+    if search_term
+      @products = Product.where("name ILIKE '%#{search_term}%'")
+    else 
+      @products = Product.all
+    end
+
+    search_term2 = params[:sort]
+    if search_term2
+    @products = Product.order(price: :asc)
+
+
+   
     render "index.json.jb"
   end
   
