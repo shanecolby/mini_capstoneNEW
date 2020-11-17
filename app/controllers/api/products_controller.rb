@@ -11,7 +11,12 @@ class Api::ProductsController < ApplicationController
 
     search_term2 = params[:sort]
     if search_term2
-    @products = Product.order(price: :asc)
+      @products = Product.order(price: :asc)
+    end
+
+    search_term3 = params[:sort_order]
+    if search_term3
+      @products = Product.order(price: :desc)
     end
 
     render "index.json.jb"
