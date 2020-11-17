@@ -12,14 +12,14 @@ class Api::ProductsController < ApplicationController
     search_term2 = params[:sort]
     if search_term2 == "price" && params[:sort_order] == "asc"
       @products = @products.order(price: :asc)
-    elsif search_term2 == "price" && params[:sort_order "desc"
+    elsif search_term2 == "price" && params[:sort_order] == "desc"
       @products = @products.order(price: :desc)
     else
       @products = @products.order(id: :asc)
     end
 
     if params[:discount] == "true"
-      @products = @products.where( "price" < 20)
+      @products = @products.where( "price < 20")
     end
 
 
