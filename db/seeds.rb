@@ -1,17 +1,27 @@
-product = Product.new(name: "Keyboard", price: 75.00, img_url: "keyboard.computer.tkl.amazon", description: "Mechanical Keyboard wired")
-product.save
+products = Product.all
 
-product = Product.new(name: "Computer mouse", price: 60.00 , img_url: "computer.mouse", description: "wired computer mouse")
-product.save
+products.each do |product|
+  id = rand(1..2)
+  product.update(supplier_id: id)
+end
 
-product = Product.new(name: "Computer desk", price: 200.00, img_url: "desks.computer.wood.l-shaped.com", description: "L-shaped computer desk")
-product.save
 
-product = Product.new(name: "Computer chair", price: 150.00, img_url: "desk.chair.computer.leather", description: "Adjustable computer chair with lumbar support")
-product.save
 
-product = Product.new(name: "desk lamp", price: 15.00, img_url: "desk.accessory.lamp", description: "10 inch desk lamp")
-product.save
+
+# product = Product.new(name: "Keyboard", price: 75.00, img_url: "keyboard.computer.tkl.amazon", description: "Mechanical Keyboard wired")
+# product.save
+
+# product = Product.new(name: "Computer mouse", price: 60.00 , img_url: "computer.mouse", description: "wired computer mouse")
+# product.save
+
+# product = Product.new(name: "Computer desk", price: 200.00, img_url: "desks.computer.wood.l-shaped.com", description: "L-shaped computer desk")
+# product.save
+
+# product = Product.new(name: "Computer chair", price: 150.00, img_url: "desk.chair.computer.leather", description: "Adjustable computer chair with lumbar support")
+# product.save
+
+# product = Product.new(name: "desk lamp", price: 15.00, img_url: "desk.accessory.lamp", description: "10 inch desk lamp")
+# product.save
 
 
 #CREATED WITH rails db:seed:dump APPEND=true (recovers data if deleted)
@@ -31,4 +41,4 @@ product.save
   # {name: "car", price: "35000.0", img_url: nil, description: "nice car", inventory: nil},
   # {name: "monitor", price: "180.0", img_url: "http://bestbuy.com/monitor", description: "1m/s 144hz monitor", inventory: nil},
   # {name: "air sprayer", price: "8.0", img_url: "http://www.bestbuy.com/air", description: "compressed air", inventory: nil}
-])
+
