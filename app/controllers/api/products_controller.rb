@@ -2,17 +2,15 @@ class Api::ProductsController < ApplicationController
   
   def index
     # @products = Product.all
-    search_term = params[:search]
-    if search_term
-      @products = Product.where("name ILIKE '%#{search_term}%'")
+    if params[:search]
+      @products = Product.where("name ILIKE '%#{params[:search]}%'")
     else 
       @products = Product.all
     end
 
-    search_term2 = params[:sort]
-    if search_term2 == "price" && params[:sort_order] == "asc"
+    if params[:sort] == "price" && params[:sort_order] == "asc"
       @products = @products.order(price: :asc)
-    elsif search_term2 == "price" && params[:sort_order] == "desc"
+    elsif params[:sort] == "price" && params[:sort_order] == "desc"
       @products = @products.order(price: :desc)
     else
       @products = @products.order(id: :asc)
