@@ -2,7 +2,7 @@ class Api::ProductsController < ApplicationController
   
   def index
     # @products = Product.all
-    search_term = params[:name]
+    search_term = params[:search]
     if search_term
       @products = Product.where("name ILIKE '%#{search_term}%'")
     else 
@@ -10,14 +10,19 @@ class Api::ProductsController < ApplicationController
     end
 
     search_term2 = params[:sort]
-    if search_term2
-      @products = Product.order(price: :asc)
+    if search_term2 == "price" && params[:sort_order] == "asc"
+      @products = @products.order(price: :asc)
+    elsif search_term2 == "price" && params[:sort_order "desc"
+      @products = @products.order(price: :desc)
+    else
+      @products = @products.order(id: :asc)
     end
 
-    search_term3 = params[:sort_order]
-    if search_term3
-      @products = Product.order(price: :desc)
+    if params[:discount] == "true"
+      @products = @products.where( "price" < 20)
     end
+
+
 
     render "index.json.jb"
   end
