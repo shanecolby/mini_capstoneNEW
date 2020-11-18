@@ -2,10 +2,11 @@
   id: product.id,
   name: product.name,
   price: product.price,
-  img_url: product.img_url,
   description: product.description,
   tax: number_to_currency(product.tax),
   is_discounted?: product.is_discounted?,
   total: number_to_currency(product.total),
-  supplier: product.supplier
+  supplier: product.supplier.name,
+  images: product.images
+  
 }   

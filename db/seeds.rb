@@ -5,7 +5,12 @@ products.each do |product|
   product.update(supplier_id: id)
 end
 
+products = Product.all
 
+products.each do |product|
+  Image.create(url: product.image_url,product_id: product.id)
+
+end
 
 
 # product = Product.new(name: "Keyboard", price: 75.00, img_url: "keyboard.computer.tkl.amazon", description: "Mechanical Keyboard wired")
