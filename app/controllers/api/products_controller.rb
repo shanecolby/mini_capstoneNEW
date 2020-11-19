@@ -35,7 +35,7 @@ class Api::ProductsController < ApplicationController
     @product = Product.new(
       name: params[:name], 
       price: params[:price], 
-      img_url: params[:img_url], 
+      images: params[:images], 
       description: params[:description]
     )
     if @product.save
@@ -51,7 +51,7 @@ class Api::ProductsController < ApplicationController
 
     @product.name = params[:name] || @product.name 
     @product.price = params[:price]
-    @product.img_url = params[:img_url]
+    @product.imgages = params[:images]
     @product.description = params[:description]
     @product.save
     
