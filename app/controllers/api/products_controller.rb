@@ -2,6 +2,11 @@ class Api::ProductsController < ApplicationController
   
   def index
     # @products = Product.all
+
+    p "current_user"
+    p current_user
+    p "/current_user"
+
     if params[:search]
       @products = Product.where("name ILIKE '%#{params[:search]}%'")
     else 
@@ -20,11 +25,19 @@ class Api::ProductsController < ApplicationController
     end
 
 
+    if current_user
+      render "index.json.jb"
+    else
+      render json: []
+    end
 
-    render "index.json.jb"
   end
   
   def show
+    p "current_user"
+    p current_user
+    p "/current_user"
+
     @product = Product.last
     the_id = params[:id]
     @product = Product.find_by(id: the_id)
