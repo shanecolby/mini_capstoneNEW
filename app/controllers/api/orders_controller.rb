@@ -1,5 +1,17 @@
 
 class Api::OrdersController < ApplicationController
+  
+  
+  def index
+    @orders = current_user.orders
+    render 'index.json.jb'
+  end
+  
+  
+  
+  
+  
+  
   def create
     product = Product.find_by(id: params[:product_id]
     
@@ -13,12 +25,17 @@ class Api::OrdersController < ApplicationController
       user_id: current_user.id, 
       product_id: params[:product_id], 
       quantity: params[:quantity], 
-      subtotal: 20, 
-      tax:1.80, 
-      total: 21.80
+      subtotal: calculated_subtotal, 
+      tax: calculated_tax, 
+      total: calculated_total
      )
    
     @order.save
+    render "show.json.jb"
+  end
+
+  def show
+    @order = current_user.orders.find_by(id: params[:id])
     render "show.json.jb"
   end
 end

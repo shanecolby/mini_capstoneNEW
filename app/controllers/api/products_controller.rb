@@ -1,4 +1,5 @@
 class Api::ProductsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :update, :destroy]
   
   def index
     # @products = Product.all
@@ -25,11 +26,6 @@ class Api::ProductsController < ApplicationController
     end
 
 
-    if current_user
-      render "index.json.jb"
-    else
-      render json: []
-    end
 
   end
   
@@ -64,7 +60,7 @@ class Api::ProductsController < ApplicationController
 
     @product.name = params[:name] || @product.name 
     @product.price = params[:price]
-    @product.imgages = params[:images]
+    @product.images = params[:images]
     @product.description = params[:description]
     @product.save
     
