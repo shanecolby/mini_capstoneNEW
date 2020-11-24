@@ -7,6 +7,15 @@ class Api::ProductsController < ApplicationController
     p "current_user"
     p current_user
     p "/current_user"
+    
+    if params[:category]
+      category = Category.find_by(name: params[:category])
+      @products = category.products
+    else
+      @products = Product.all
+    end
+
+
 
     if params[:search]
       @products = Product.where("name ILIKE '%#{params[:search]}%'")
