@@ -33,7 +33,7 @@ class Api::ProductsController < ApplicationController
     if params[:discount] == "true"
       @products = @products.where( "price < 20")
     end
-
+    render "index.json.jb"
 
 
   end
