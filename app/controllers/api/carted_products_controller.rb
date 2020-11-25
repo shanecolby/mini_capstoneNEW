@@ -1,5 +1,8 @@
 class Api::CartedProductsController < ApplicationController
+  before_action :authenticate_user
+  
   def create
+    
     # product = Product.find_by(id: params[:product_id])
 
 
