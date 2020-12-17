@@ -1,8 +1,8 @@
 class Api::ProductsController < ApplicationController
-  before_action :authenticate_user, only: [:create, :update, :destroy]
+  # before_action :authenticate_user, only: [:create, :update, :destroy]
   
   def index
-    # @products = Product.all
+    @products = Product.all
 
     p "current_user"
     p current_user
@@ -52,8 +52,7 @@ class Api::ProductsController < ApplicationController
   def create
     @product = Product.new(
       name: params[:name], 
-      price: params[:price], 
-      images: params[:images], 
+      price: params[:price],  
       description: params[:description]
     )
     if @product.save
@@ -69,7 +68,6 @@ class Api::ProductsController < ApplicationController
 
     @product.name = params[:name] || @product.name 
     @product.price = params[:price]
-    @product.images = params[:images]
     @product.description = params[:description]
     @product.save
     

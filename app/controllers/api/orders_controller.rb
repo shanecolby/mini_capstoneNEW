@@ -9,25 +9,52 @@ class Api::OrdersController < ApplicationController
   
   
   def create
-    product = Product.find_by(id: params[:product_id]
-    
-    calculated_subtotal = params[:quantity].to_i * product.price
-    tax_rate = 0.09
-    calculated_tax = calculated_subtotal * tax_rate 
-    calculated_total = calculated_subtotal + calculated_tax
 
+    carted_products = current_user.carted_products.where(status: "carted")
+
+    subtotal = 0
+    carted_products.each do |cp|
+      subtotal += cp.product.price * cp.quantity
+    end
+
+    tax_rate = 0.09
+    tax = subtotal * tax_rate
+    total = subtotal + tax
 
     @order = Order.new(
-      user_id: current_user.id, 
-      product_id: params[:product_id],
-      quantity: params[:quantity], 
-      subtotal: calculated_subtotal, 
-      tax: calculated_tax, 
-      total: calculated_total
-     )
-   
+      user_id: current_user.id,
+      subtotal: subtotal,
+      tax: tax,
+      total: total,)
+
     @order.save
+
+    carted_products.each do |cp|
+      cp.update(status: "purchased", order_id: @order_id)
+
+
+    end
+
     render "show.json.jb"
+    # product = Product.find_by(id: params[:product_id]
+    
+    # calculated_subtotal = params[:quantity].to_i * product.price
+    # tax_rate = 0.09
+    # calculated_tax = calculated_subtotal * tax_rate 
+    # calculated_total = calculated_subtotal + calculated_tax
+
+
+    # @order = Order.new(
+    #   user_id: current_user.id, 
+    #   product_id: params[:product_id],
+    #   quantity: params[:quantity], 
+    #   subtotal: calculated_subtotal, 
+    #   tax: calculated_tax, 
+    #   total: calculated_total
+    #  )
+   
+    # @order.save
+    # render "show.json.jb"
   end
 
   def show
