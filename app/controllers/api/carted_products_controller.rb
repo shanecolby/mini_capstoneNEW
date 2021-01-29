@@ -16,7 +16,7 @@ class Api::CartedProductsController < ApplicationController
       user_id: current_user.id,
       product_id: params[:product_id],
       quantity: params[:quantity], 
-      status: "carted"
+      status: "carted",
     )
 
     render "show.json.jb"

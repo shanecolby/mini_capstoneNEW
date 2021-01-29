@@ -68,6 +68,7 @@ class Api::ProductsController < ApplicationController
 
     @product.name = params[:name] || @product.name 
     @product.price = params[:price]
+
     @product.description = params[:description]
     @product.save
     
