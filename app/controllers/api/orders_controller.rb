@@ -17,7 +17,7 @@ class Api::OrdersController < ApplicationController
       subtotal += cp.product.price * cp.quantity
     end
 
-    tax_rate = 0.10
+    tax_rate = 0.9
     tax = subtotal * tax_rate
     total = subtotal + tax
 
